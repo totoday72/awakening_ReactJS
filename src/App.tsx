@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import background_img from './images/AWK_TRIColor_Op4.jpg'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const style_index = {
+    backgroundImage: "URL(" + background_img + ")",
+    height: 400,
+    weight: 500,
+    backgroundRepeat: "no-repeat"
 }
+
+const App = () =>{
+    return (
+        <div style={style_index} className={'col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 d-lg-block'}>
+
+        </div>
+    );
+}
+
 
 export default App;
