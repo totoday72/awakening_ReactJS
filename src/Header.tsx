@@ -2,11 +2,42 @@ import React from 'react';
 import logo from './images/logo.png';
 import './css/App.css';
 import "./styles.css";
+import { withCookies, Cookies, useCookies} from 'react-cookie';
 
 
+
+function ComponentWillMount() {
+    const [cookies] = useCookies();
+    // let  getCookievalue = cookies.name.maxAge;/*
+    // let exp = cookies.load('exp');
+    // console.log(getCookie);
+    // if(getCookie === undefined || ((exp - new Date().getTime()) < 0)) {
+    //     let url = 'http://localhost:8080/login.html'
+    //     window.location.href =  url
+    //     console.log(url)
+    // }*/
+    // console.log(getCookievalue);
+    // updateCookies.name;
+    return (<div> {cookies.name + cookies.name} </div>);
+
+}
+
+function Close_Session(){
+    const [cookies, ] = useCookies();
+    const cookie = cookies["name"];
+
+    if (cookie) {
+        console.log("Existe la cookie y sy valor es:" + cookie);
+        return (<div>1</div>);
+    } else {
+        console.log('NO HAY COOKIE LLAMADA NAME');
+        return (<div>0</div>);
+    }
+}
 
 function Header() {
     return (
+
         <header className="navbar navbar-expand-lg navbar-light bg-light fixed-top row">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">
@@ -41,9 +72,27 @@ function Header() {
                             <a className="nav-link disabled" href="#" tabIndex={-1}  aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
+                    <hr/>
+                    <div className="dropdown pb-4">
+                        <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" className="rounded-circle"/>
+                            <span className=" mx-1">loser</span>
+                        </a>
+                        <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a className="dropdown-item" href="#">New project...</a></li>
+                            <li><a className="dropdown-item" href="#">Settings</a></li>
+                            <li><a className="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr className="dropdown-divider"/>
+                            </li>
+                            <li><a className="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
+            </div>
+            <ComponentWillMount />
+            <Close_Session />
         </header>)
 }
 

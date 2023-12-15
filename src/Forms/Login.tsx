@@ -3,12 +3,14 @@ import {useForm} from "react-hook-form";
 import "../css/App.css";
 import "../css/index.css";
 import Leftbar from "../Leftbar";
-
+import { withCookies, Cookies, useCookies} from 'react-cookie';
 interface IFormInput {
     user: string;
     password: string;
     example: string;
 }
+
+
 
 const style = {
     height: 75
@@ -17,6 +19,7 @@ const style2 = {
     height: 50
 }
 const nodJS = 'http://192.168.10.237:3001/api/'
+
 
 function Login() {
     return (<React.StrictMode>
@@ -40,13 +43,29 @@ function Body() {
         watch,
         formState: {errors}
     } = useForm<IFormInput>();
+    const [cookies, setCookie, removeCookie] = useCookies(['name']);
 
     const onSubmit = async (data: IFormInput) => {
+        removeCookie('name');
         let objectjs = JSON.stringify(data);
         let name = data.user;
         let response = await parseUser(data.user, data.password);
         alert(name + ' --- ' + objectjs + "Respuesta NodJS JSON:" + response[0].PASS);
         sessionStorage.setItem('PASS',response[0].PASS);
+        const expire_time = new Date();
+        expire_time.setHours(0, 0, 0, 0);
+        expire_time.setDate(expire_time.getDate() + 1);
+        setCookie('name', 'Erick',{
+            path: "/", expires: expire_time
+        });
+
+        // let minutes = 1;
+        // let d = new Date();
+        // d.setTime(d.getTime() + (minutes*60*1000));
+        // setCookie('name', 'Erick',{
+        //     path: "/", expires: d
+        // });
+
     }; // your form submit function which will invoke after successful validation
 
     async function parseUser(user: any, password: any) {
@@ -77,8 +96,6 @@ function Body() {
             });
     }
 
-
-    console.log(watch("example")); // you can watch individual input by pass the name of the input
 
     return (
         <div className={'login col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 d-lg-block'}>
