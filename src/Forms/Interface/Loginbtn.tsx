@@ -9,7 +9,8 @@ import Row from "react-bootstrap/Row";
 import logo from "../../images/logo.png";
 
 const nodJS = 'http://192.168.10.237:3001/api/';
-function Charge_Login(){
+
+function Charge_Login() {
     const cerrar_sesion = (event) => {
         event.preventDefault();
         removeCookie('session');
@@ -24,15 +25,15 @@ function Charge_Login(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({user: user, password: password})
         };
-        const response =  await fetch(nodJS + 'users', requestOptions)
+        const response = await fetch(nodJS + 'users', requestOptions)
         // return response;
         return await response.json();
 
     }
 
-    function Redirect_home (){
+    function Redirect_home() {
         let url = '/';
-        window.location.href =  url.toString();
+        window.location.href = url.toString();
     }
 
     const [cookies, setCookie, removeCookie] = useCookies();
@@ -57,23 +58,23 @@ function Charge_Login(){
             let usuario = form["usuario"].value;
             let contrasenia = form["contrasenia"].value;
             const response = await parseUser(usuario, contrasenia);
-            let keyCount  = Object.keys(response).length;
-            if (keyCount > 0 ){
-                sessionStorage.setItem('session',response[0].PASS);
+            let keyCount = Object.keys(response).length;
+            if (keyCount > 0) {
+                sessionStorage.setItem('session', response[0].PASS);
                 const expire_time = new Date();
                 expire_time.setHours(0, 0, 0, 0);
                 expire_time.setDate(expire_time.getDate() + 1);
-                setCookie('session', 'session',{
+                setCookie('session', 'session', {
                     path: "/", expires: expire_time
                 });
-                setCookie('nombre', response[0].NOMBRE,{
+                setCookie('nombre', response[0].NOMBRE, {
                     path: "/", expires: expire_time
                 });
-                setCookie('usuario', response[0].USUARIO,{
+                setCookie('usuario', response[0].USUARIO, {
                     path: "/", expires: expire_time
                 });
                 Redirect_home();
-            }else{
+            } else {
                 alert("Usuario o contraseña incorrectos!");
             }
         }
@@ -83,12 +84,28 @@ function Charge_Login(){
     console.log(session);
     if (session === undefined || ((session - new Date().getTime()) < 0)) {
         return (
+
             <div>
+                <style type="text/css">
+                    {`
+                    logins{
+                        background: rgba(0,0,0,0.4);
+                          backdrop-filter: blur(10px);
+                          border: 0.05 solid #000814;
+                          border-radius: 20px;
+                          width: 500px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 30px;
+                          box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+                        }
+                    `}
+                </style>
                 <Button variant="outline-primary" size="sm" onClick={handleShow} type={undefined}>
                     Iniciar sesion
                 </Button>
 
-                <Modal show={show} onHide={handleClose} animation={true}>
+                <Modal show={show} onHide={handleClose} animation={true} className={"login"}>
                     <Modal.Header closeButton>
                         <a className="navbar-brand" href="/">
                             <img src={logo} alt="" width="75" height="50" className="d-inline-block align-text-top"/>
@@ -140,7 +157,8 @@ function Charge_Login(){
     } else {
         return (
             <Dropdown>
-                <Dropdown.Toggle className="btn btn-primary bg-light" type={undefined} variant="success" id="dropdown-basic">
+                <Dropdown.Toggle className="btn btn-primary bg-light" type={undefined} variant="success"
+                                 id="dropdown-basic">
                     <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
                          className="rounded-circle"/>
                     <span className="text-dark">{cookies.nombre}</span>
@@ -150,7 +168,8 @@ function Charge_Login(){
                     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                     <Dropdown.Item href="">
                         <div className="d-grid gap-2">
-                            <Button className={"btn btn-sm"} size="sm" variant={"danger"} type={undefined} onClick={cerrar_sesion}>Cerrar sesión</Button>
+                            <Button className={"btn btn-sm"} size="sm" variant={"danger"} type={undefined}
+                                    onClick={cerrar_sesion}>Cerrar sesión</Button>
                         </div>
                     </Dropdown.Item>
                     <div> Has iniciado sesion como: {cookies.usuario} </div>
@@ -170,4 +189,5 @@ function Log_button() {
         </div>
     )
 }
+
 export default Log_button;
