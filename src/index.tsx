@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './css/index.css';
-import Header from './Header';
+import Header from './Forms/Interface/Header';
 import App from './App';
-import Leftbar from './Leftbar';
-import Footer from './Footer';
+import Leftbar from './Forms/Interface/Leftbar';
+import Footer from './Forms/Interface/Footer';
 import reportWebVitals from './reportWebVitals';
-import Login from "./Forms/Login";
+import Login from "./Forms/Paginas/Login";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 
 
@@ -20,6 +20,8 @@ const style = {
 const style2 = {
     height:50
 }
+
+//aca se define la pagina Home de la aplicacion
 function Index (){
     return(
         <React.StrictMode>
@@ -35,7 +37,7 @@ function Index (){
     );
 }
 
-
+// aca se definen las rutas para las paginas que estan disponibles en la app.
 root.render(
     <BrowserRouter>
         <Header />
@@ -47,14 +49,4 @@ root.render(
     </BrowserRouter>
 );
 
-/*
-root.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
-);
-*/
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

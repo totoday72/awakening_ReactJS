@@ -1,8 +1,8 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import "../css/App.css";
-import "../css/index.css";
-import Leftbar from "../Leftbar";
+import "../../css/App.css";
+import "../../css/index.css";
+import Leftbar from "../Interface/Leftbar";
 import { withCookies, Cookies, useCookies} from 'react-cookie';
 interface IFormInput {
     user: string;
@@ -49,7 +49,7 @@ function Body() {
         removeCookie('name');
         let objectjs = JSON.stringify(data);
         let name = data.user;
-        let response = await parseUser(data.user, data.password);
+        let response = await parseUser2(data.user, data.password);
         alert(name + ' --- ' + objectjs + "Respuesta NodJS JSON:" + response[0].PASS);
         sessionStorage.setItem('PASS',response[0].PASS);
         const expire_time = new Date();
@@ -68,7 +68,7 @@ function Body() {
 
     }; // your form submit function which will invoke after successful validation
 
-    async function parseUser(user: any, password: any) {
+    async function parseUser2(user: any, password: any) {
         // POST request using fetch with error handling
         const requestOptions = {
             method: 'POST',

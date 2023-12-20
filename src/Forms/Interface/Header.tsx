@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from './images/logo.png';
-import './css/App.css';
-import "./styles.css";
+import logo from '../../images/logo.png';
+import '../../css/App.css';
+import "../../styles.css";
 import { withCookies, Cookies, useCookies} from 'react-cookie';
+import Button_login from './loginbutton';
 
 
 
@@ -73,21 +74,10 @@ function Header() {
                         </li>
                     </ul>
                     <hr/>
-                    <div className="dropdown pb-4">
-                        <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" className="rounded-circle"/>
-                            <span className=" mx-1">loser</span>
-                        </a>
-                        <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><a className="dropdown-item" href="#">New project...</a></li>
-                            <li><a className="dropdown-item" href="#">Settings</a></li>
-                            <li><a className="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr className="dropdown-divider"/>
-                            </li>
-                            <li><a className="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
+                    <Button_login />
+
+
+
                 </div>
 
             </div>

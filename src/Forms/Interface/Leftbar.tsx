@@ -1,6 +1,6 @@
 import React from 'react';
-import './css/App.css';
-import "./styles.css";
+import '../../css/App.css';
+import "../../styles.css";
 
 
 function Leftbar() {
