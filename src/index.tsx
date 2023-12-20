@@ -10,7 +10,6 @@ import Login from "./Forms/Paginas/Login";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -36,7 +35,6 @@ function Index (){
         </React.StrictMode>
     );
 }
-
 // aca se definen las rutas para las paginas que estan disponibles en la app.
 root.render(
     <BrowserRouter>

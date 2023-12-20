@@ -3,7 +3,7 @@ import logo from '../../images/logo.png';
 import '../../css/App.css';
 import "../../styles.css";
 import { withCookies, Cookies, useCookies} from 'react-cookie';
-import Button_login from './loginbutton';
+import Button_login from './Loginbtn';
 
 
 
@@ -23,18 +23,7 @@ function ComponentWillMount() {
 
 }
 
-function Close_Session(){
-    const [cookies, ] = useCookies();
-    const cookie = cookies["name"];
 
-    if (cookie) {
-        console.log("Existe la cookie y sy valor es:" + cookie);
-        return (<div>1</div>);
-    } else {
-        console.log('NO HAY COOKIE LLAMADA NAME');
-        return (<div>0</div>);
-    }
-}
 
 function Header() {
     return (
@@ -75,14 +64,9 @@ function Header() {
                     </ul>
                     <hr/>
                     <Button_login />
-
-
-
                 </div>
-
             </div>
             <ComponentWillMount />
-            <Close_Session />
         </header>)
 }
 
