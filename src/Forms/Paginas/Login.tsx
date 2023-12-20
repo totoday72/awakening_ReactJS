@@ -10,23 +10,10 @@ interface IFormInput {
     example: string;
 }
 
-
-
-const style = {
-    height: 75
-}
-const style2 = {
-    height: 50
-}
 const nodJS = 'http://192.168.10.237:3001/api/'
-
 
 function Login() {
     return (<React.StrictMode>
-        <div style={style}>
-        </div>
-        <div className={"d-lg-none d-xl-none"} style={style2}>
-        </div>
         <div className={"row"}>
             <Leftbar/>
             <Body/>

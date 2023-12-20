@@ -9,25 +9,14 @@ import reportWebVitals from './reportWebVitals';
 import Login from "./Forms/Paginas/Login";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-const style = {
-    height:75
-}
-const style2 = {
-    height:50
-}
 
 //aca se define la pagina Home de la aplicacion
 function Index (){
     return(
         <React.StrictMode>
-            <div style={style}>
-            </div>
-            <div className={"d-lg-none d-xl-none"} style={style2}>
-            </div>
             <div className={"row"}>
                 <Leftbar />
                 <App />
