@@ -90,11 +90,6 @@ function Body() {
         }
     };
 
-    function Delete_class() {
-        document.getElementById('form_empleado').classList.remove('form');
-        return (<div></div>);
-    }
-
     const style_form = {
         maxWidth: '1000px'
     }
