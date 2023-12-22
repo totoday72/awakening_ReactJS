@@ -66,6 +66,10 @@ function Leftbar() {
                         <a href="/login" className="nav-link px-0 align-middle">
                             <i className="fs-4 bi-people"></i> <span className="ms-1 ">Login</span> </a>
                     </li>
+                    <li>
+                        <a href="/empleado" className="nav-link px-0 align-middle">
+                            <i className="fs-4 bi-person-fill-add"></i> <span className="ms-1 ">Ingreso Empleado</span> </a>
+                    </li>
                 </ul>
 
             </div>

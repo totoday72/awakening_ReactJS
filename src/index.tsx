@@ -7,6 +7,7 @@ import Leftbar from './Forms/Interface/Leftbar';
 import Footer from './Forms/Interface/Footer';
 import reportWebVitals from './reportWebVitals';
 import Login from "./Forms/Paginas/Login";
+import Empleado from "./Forms/Awakening/frm_empleado";
 import {BrowserRouter, Route,Routes} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
@@ -31,6 +32,7 @@ root.render(
         <Routes>
             <Route path='/'  Component={Index}></Route>
             <Route path='/login'  Component={Login}></Route>
+            <Route path='/empleado'  Component={Empleado}></Route>
         </Routes>
         <Footer />
     </BrowserRouter>
