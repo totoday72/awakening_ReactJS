@@ -20,3 +20,11 @@ div.login{
   -o-background-size: cover;
   background-size: cover;
 }
+
+div.index{
+  background: url("../images/background_index.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

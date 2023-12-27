@@ -3,6 +3,11 @@ import '../../css/App.css';
 import "../../styles.css";
 
 
+function Charge_Modules(){
+
+}
+
+
 function Leftbar() {
     return (
         <div id="sidebarMenu" className="col-auto col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 px-sm-2 px-0 d-md-block bg-light sidebar collapse">
