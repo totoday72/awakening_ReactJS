@@ -22,6 +22,7 @@ function Index (){
                 <Leftbar />
                 <App />
             </div>
+            <Footer />
         </React.StrictMode>
     );
 }
@@ -34,7 +35,6 @@ root.render(
             <Route path='/login'  Component={Login}></Route>
             <Route path='/empleado'  Component={Empleado}></Route>
         </Routes>
-        <Footer />
     </BrowserRouter>
 );
 
