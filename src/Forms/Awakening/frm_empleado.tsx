@@ -23,7 +23,7 @@ class Empleado extends React.Component {
     }
 
     render() {
-        async function Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, foto, base64_cuerpo) {
+        async function Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, base64_cuerpo) {
             // POST request using fetch with error handling
             // console.log("imagen en base 64:" + base64_cuerpo);
             const requestOptions = {
@@ -40,7 +40,6 @@ class Empleado extends React.Component {
                     correo: correo,
                     peso: peso,
                     altura: altura,
-                    foto: foto,
                     tipo_archivo: extention_file,
                     base64_imagen: base64_cuerpo,
                 })
@@ -80,7 +79,7 @@ class Empleado extends React.Component {
                 let peso = form["peso"].value;
                 let altura = form["altura"].value;
                 let foto = form["foto"].value;
-                const response = await Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, foto, base64_file);
+                const response = await Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, base64_file);
                 let keyCount = Object.keys(response).length;
                 alert(keyCount);
                 if (keyCount > 0) {
