@@ -319,6 +319,7 @@ class Empleado extends Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
+                                                <Form.Label style={style_label}>Fotografía</Form.Label>
                                                 <FileBase64
                                                     accept=".png,.jpeg,.jpg"
                                                     multiple={true}
