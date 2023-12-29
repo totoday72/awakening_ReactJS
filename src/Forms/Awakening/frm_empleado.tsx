@@ -37,7 +37,7 @@ class Empleado extends Component {
         return "";
     }
 
-    getFiles(files) {
+    getFiles(files: object) {
         base64_file = files[0].base64;
         extention_file = files[0].file.name.split('.').at(-1);
         this.setState({files: files})
