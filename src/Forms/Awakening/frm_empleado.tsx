@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Badge, Image} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,26 +8,24 @@ import Leftbar from "../Interface/Leftbar";
 import FileBase64 from 'react-file-base64';
 
 
-
 const nodJS = 'http://192.168.10.237:3001/api/';
-var base64_file = ""
-var extention_file = ""
-
+let base64_file = ""
+let extention_file = ""
 
 
 class Empleado extends Component {
 
-    setCookie(cname, cvalue, exdays) {
+    setCookie(cname: string, cvalue: string, exdays: number) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        let expires = "expires="+d.toUTCString();
+        let expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
-    getCookie(cname) {
+    getCookie(cname: string) {
         let name = cname + "=";
         let ca = document.cookie.split(';');
-        for(let i = 0; i < ca.length; i++) {
+        for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
@@ -51,21 +49,21 @@ class Empleado extends Component {
     }
 
     render() {
-        async function Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, base64_cuerpo) {
+        async function Db_insert_empleado(pnombre: string, snombre: string, papellido: string, sapellido: string, doc_dpi: string, fchnac: string, tel1: string, correo: string, peso: string, altura: string, base64_cuerpo: string) {
             // POST request using fetch with error handling
             // console.log("imagen en base 64:" + base64_cuerpo);
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    pnombre: pnombre,
-                    snombre: snombre,
-                    papellido: papellido,
-                    sapellido: sapellido,
+                    pnombre: pnombre.toUpperCase(),
+                    snombre: snombre.toUpperCase(),
+                    papellido: papellido.toUpperCase(),
+                    sapellido: sapellido.toUpperCase(),
                     doc_dpi: doc_dpi,
                     fchnac: fchnac,
                     tel1: tel1,
-                    correo: correo,
+                    correo: correo.toUpperCase(),
                     peso: peso,
                     altura: altura,
                     tipo_archivo: extention_file,
@@ -122,7 +120,7 @@ class Empleado extends Component {
             maxWidth: '1000px'
         }
 
-        const style_label ={
+        const style_label = {
             color: 'black',
 
         }
