@@ -7,13 +7,16 @@ function Charge_Modules(){
 
 }
 
+const style_label ={
+    color: 'black',
 
+}
 function Leftbar() {
     return (
         <div id="sidebarMenu" className="col-auto col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 px-sm-2 px-0 d-md-block bg-light sidebar collapse">
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span className="fs-5 ">Menu</span>
+                    <span className="fs-5" style={style_label}>Programas</span>
                 </a>
                 <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li className="nav-item">

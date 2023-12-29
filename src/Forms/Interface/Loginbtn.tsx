@@ -101,7 +101,7 @@ function Charge_Login() {
                         }
                     `}
                 </style>
-                <Button variant="outline-primary" size="sm" onClick={handleShow} type={undefined}>
+                <Button variant="btn btn-primary" size="sm" onClick={handleShow} type={undefined}>
                     Iniciar sesion
                 </Button>
 
@@ -113,7 +113,6 @@ function Charge_Login() {
                         <Modal.Title>Iniciar sesion en Awakening</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-
                         <Form noValidate validated={validated} onSubmit={iniciar_sesion}>
                             <Form.Group as={Col} controlId="validationCustom01">
                                 <Form.Label>Usuario</Form.Label>
@@ -143,7 +142,7 @@ function Charge_Login() {
                             <Row className="mb-auto" as={Col}>
                                 <Col className="mb-4 mb-lg-4" as={Col}></Col>
                                 <Col className="mb-4 mb-lg-4" as={Col}>
-                                    <Button className="btn btn-warning" type={undefined}>Iniciar Sesión</Button>
+                                    <Button className="btn btn-warning" type={"submit"} variant={"success"}>Iniciar Sesión</Button>
                                 </Col>
                                 <Col className="mb-4 mb-lg-4" as={Col}></Col>
                             </Row>
@@ -164,8 +163,8 @@ function Charge_Login() {
                     <span className="text-dark">{cookies.nombre}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1">Ver perfil</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Cambiar de contraseña</Dropdown.Item>
                     <Dropdown.Item href="">
                         <div className="d-grid gap-2">
                             <Button className={"btn btn-sm"} size="sm" variant={"danger"} type={undefined}

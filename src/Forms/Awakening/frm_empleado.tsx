@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Badge, Image} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,11 +8,37 @@ import Leftbar from "../Interface/Leftbar";
 import FileBase64 from 'react-file-base64';
 
 
+
 const nodJS = 'http://192.168.10.237:3001/api/';
 var base64_file = ""
 var extention_file = ""
 
-class Empleado extends React.Component {
+
+
+class Empleado extends Component {
+
+    setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
     getFiles(files) {
         base64_file = files[0].base64;
         extention_file = files[0].file.name.split('.').at(-1);
@@ -20,6 +46,8 @@ class Empleado extends React.Component {
         // console.log(files)
         // console.log(base64_file)
         // console.log(extention_file)
+        console.log(document.cookie);
+        console.log(this.getCookie("usuario"))
     }
 
     render() {
@@ -78,7 +106,6 @@ class Empleado extends React.Component {
                 let correo = form["correo"].value;
                 let peso = form["peso"].value;
                 let altura = form["altura"].value;
-                let foto = form["foto"].value;
                 const response = await Db_insert_empleado(pnombre, snombre, papellido, sapellido, doc_dpi, fchnac, tel1, correo, peso, altura, base64_file);
                 let keyCount = Object.keys(response).length;
                 alert(keyCount);
@@ -95,6 +122,10 @@ class Empleado extends React.Component {
             maxWidth: '1000px'
         }
 
+        const style_label ={
+            color: 'black',
+
+        }
 
         return (
             <div className="row col-auto col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-sm-12">
@@ -119,19 +150,25 @@ class Empleado extends React.Component {
                                 <Row>
                                     <Col xs={1}></Col>
                                     <Col xs={2}>
-                                        <a href="#">
-                                            <svg className="imgperfil" xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 24 24"
-                                                 width="90" height="90">
-                                                <path className="heroicon-ui"
-                                                      d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"></path>
-                                            </svg>
-                                        </a>
+                                        <Form.Group as={Col} controlId="validationCustom01">
+                                            <Image
+                                                src={base64_file}
+                                                style={{height: 150, width: 150}}
+                                            />
+                                        </Form.Group>
+                                        {/*<a href="#">*/}
+                                        {/*    <svg className="imgperfil" xmlns="http://www.w3.org/2000/svg"*/}
+                                        {/*         viewBox="0 0 24 24"*/}
+                                        {/*         width="90" height="90">*/}
+                                        {/*        <path className="heroicon-ui"*/}
+                                        {/*              d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"></path>*/}
+                                        {/*    </svg>*/}
+                                        {/*</a>*/}
                                     </Col>
                                     <Col xs={8}>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Primer Nombre*</Form.Label>
+                                                <Form.Label style={style_label}>Primer Nombre*</Form.Label>
                                                 <Form.Control
                                                     size="sm"
                                                     id="pnombre"
@@ -145,7 +182,7 @@ class Empleado extends React.Component {
                                                     valido</Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Segundo Nombre</Form.Label>
+                                                <Form.Label style={style_label}>Segundo Nombre</Form.Label>
                                                 <Form.Control
                                                     id="snombre"
                                                     size={"sm"}
@@ -161,7 +198,7 @@ class Empleado extends React.Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Primer Apellido*</Form.Label>
+                                                <Form.Label style={style_label}>Primer Apellido*</Form.Label>
                                                 <Form.Control
                                                     id="papellido"
                                                     size={"sm"}
@@ -175,7 +212,7 @@ class Empleado extends React.Component {
                                                     valido</Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Segundo Apellido*</Form.Label>
+                                                <Form.Label style={style_label}>Segundo Apellido*</Form.Label>
                                                 <Form.Control
                                                     id="sapellido"
                                                     size={"sm"}
@@ -191,7 +228,7 @@ class Empleado extends React.Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>DPI*</Form.Label>
+                                                <Form.Label style={style_label}>DPI*</Form.Label>
                                                 <Form.Control
                                                     id="doc_dpi"
                                                     size={"sm"}
@@ -205,7 +242,7 @@ class Empleado extends React.Component {
                                                     valido</Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Fecha de Nacimiento</Form.Label>
+                                                <Form.Label style={style_label}>Fecha de Nacimiento</Form.Label>
                                                 <Form.Control
                                                     id="fchnac"
                                                     size={"sm"}
@@ -221,7 +258,7 @@ class Empleado extends React.Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Telefono</Form.Label>
+                                                <Form.Label style={style_label}>Telefono</Form.Label>
                                                 <Form.Control
                                                     id="tel1"
                                                     size={"sm"}
@@ -235,7 +272,7 @@ class Empleado extends React.Component {
                                                     valido</Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>correo</Form.Label>
+                                                <Form.Label style={style_label}>correo</Form.Label>
                                                 <Form.Control
                                                     id="correo"
                                                     size={"sm"}
@@ -251,7 +288,7 @@ class Empleado extends React.Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Peso</Form.Label>
+                                                <Form.Label style={style_label}>Peso</Form.Label>
                                                 <Form.Control
                                                     id="peso"
                                                     size={"sm"}
@@ -265,13 +302,13 @@ class Empleado extends React.Component {
                                                     valido</Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Estatura</Form.Label>
+                                                <Form.Label style={style_label}>Estatura</Form.Label>
                                                 <Form.Control
                                                     id="altura"
                                                     size={"sm"}
                                                     required
                                                     type="number"
-                                                    placeholder="Ingrese la estatura en metros"
+                                                    placeholder="Ingrese la estatura en centimetros"
                                                     // defaultValue="Mark"
                                                 />
                                                 <Form.Control.Feedback type="valid">Campo lleno!</Form.Control.Feedback>
@@ -282,33 +319,12 @@ class Empleado extends React.Component {
                                         </Row>
                                         <Row>
                                             <Form.Group as={Col} controlId="validationCustom01">
-                                                <Form.Label>Peso</Form.Label>
-                                                <Form.Control
-                                                    id="foto"
-                                                    size={"sm"}
-                                                    required
-                                                    type="text"
-                                                    placeholder="Ingrese el nombre de la imagen"
-                                                    // defaultValue="Mark"
-                                                />
-                                                <Form.Control.Feedback type="valid">Campo lleno!</Form.Control.Feedback>
-                                                <Form.Control.Feedback type="invalid">Ingrese un usuario
-                                                    valido</Form.Control.Feedback>
-                                            </Form.Group>
-                                        </Row>
-                                        <Row>
-                                            <Form.Group as={Col} controlId="validationCustom01">
                                                 <FileBase64
                                                     accept=".png,.jpeg,.jpg"
                                                     multiple={true}
                                                     onDone={this.getFiles.bind(this)}/>
                                             </Form.Group>
-                                            <Form.Group as={Col} controlId="validationCustom01">
-                                                <Image
-                                                    src={base64_file}
-                                                    style={{height: 150, width: 150}}
-                                                />
-                                            </Form.Group>
+
                                         </Row>
                                     </Col>
                                     <Col xs={1}></Col>
